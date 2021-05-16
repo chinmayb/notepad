@@ -1,0 +1,35 @@
+
+body {
+    font-family: monospace;
+    background: var(--bg);
+}
+
+ul {
+    font-family: helvetica;
+}
+
+* {
+    font-family: helvetica;
+    color: var(--fontcolor);
+}
+
+/*
+define vars
+
+*/
+:root {
+    --green: #00ff00;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+.light-theme {
+    --bg: var(--white);
+    --fontcolor: var(--green);
+}
+
+
+.dark-theme {
+    --bg: var(--black);
+    --fontcolor: var(--green);
+}
