@@ -1,0 +1,197 @@
+{
+  "main": {
+    "id": "ffe12bc24877268d",
+    "type": "split",
+    "children": [
+      {
+        "id": "2c773537d41b22ba",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "17ef531db35c5ade",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "modules/01-What-is-the-Actor-Model.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "01-What-is-the-Actor-Model"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e5872ed1ac233da4",
+    "type": "split",
+    "children": [
+      {
+        "id": "f496aeac66499003",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b9d7c092ea0a848",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "bdc278afe45d8001",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6134a0892f1c1144",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 231.5
+  },
+  "right": {
+    "id": "c71bd7c025d962ab",
+    "type": "split",
+    "children": [
+      {
+        "id": "32a751f6f0888f4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d55f3e3ab0d5cd4a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "modules/01-What-is-the-Actor-Model.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 01-What-is-the-Actor-Model"
+            }
+          },
+          {
+            "id": "385aa95ac576fc3c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "modules/01-What-is-the-Actor-Model.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 01-What-is-the-Actor-Model"
+            }
+          },
+          {
+            "id": "fe42618e817ff7e7",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "e681bdbff7227e8f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "a56dece0f814e76d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "modules/01-What-is-the-Actor-Model.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 01-What-is-the-Actor-Model"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "3b9d7c092ea0a848",
+  "lastOpenFiles": [
+    "modules/03-Supervision-and-Fault-Tolerance.md",
+    "modules/05-Cluster-and-Virtual-Actors.md",
+    "modules/07-State-Sharing-Across-100-Nodes.md",
+    "modules/06-Gossip-Protocol.md",
+    "Readme.md",
+    "modules/02-Core-Mechanics-in-Go.md",
+    "modules/01-What-is-the-Actor-Model.md",
+    "modules/04-Behaviors-and-Context.md"
+  ]
+}

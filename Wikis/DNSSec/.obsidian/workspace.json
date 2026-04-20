@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "56fe6171f6bac399",
+    "type": "split",
+    "children": [
+      {
+        "id": "809c80d87dd82ba6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2093d882ac7b7563",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CLAUDE"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "64e15f4d848ec4e4",
+    "type": "split",
+    "children": [
+      {
+        "id": "1b6e426da2f52019",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "36a9b9145de6c072",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7acb8e5a2e8c0dd4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "176c046baf155582",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6ace2f889b2ad9fc",
+    "type": "split",
+    "children": [
+      {
+        "id": "071e2b8d7cb8763b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "55355eb9b9553aac",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wiki/overview.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for overview"
+            }
+          },
+          {
+            "id": "010c131b9f05d5e0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "wiki/overview.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from overview"
+            }
+          },
+          {
+            "id": "ac797286ddce53e5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "57d817569dc255c9",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "65113ad697e2e2eb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "wiki/overview.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of overview"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "2093d882ac7b7563",
+  "lastOpenFiles": [
+    "wiki/index.md",
+    "wiki/concepts/chain-of-trust.md",
+    "CLAUDE.md",
+    "Welcome.md",
+    "wiki/overview.md",
+    "raw/01-learn-dnssec.md",
+    "wiki/sources/cs161-dnssec.md",
+    "wiki/sources/rfc-6781.md",
+    "wiki/sources/dnssec-kasp-policy.md",
+    "wiki/sources/dnssec-guide-bind9.md",
+    "wiki/entities/DNSViz.md",
+    "wiki/entities/Internet-Systems-Consortium.md",
+    "wiki/sources/dnssec-and-bind9-isc.md",
+    "wiki/entities/Dan-Kaminsky.md",
+    "wiki/concepts/dns-cache-poisoning.md",
+    "wiki/sources/kaminsky-exploit.md",
+    "wiki/entities/Cloudflare.md",
+    "wiki/sources/how-does-dnssec-work-cloudflare.md",
+    "raw/dnssec0guide/DNSSEC and BIND 9.md",
+    "raw/dnssec0guide/DNS Vulnerabilities Lessons from the Kaminsky Exploit and Its Lasting Impact on Internet Security.md",
+    "raw/dnssec-guide.pdf",
+    "raw/README.md",
+    "wiki/concepts/dnssec-debugging.md",
+    "wiki/log.md",
+    "wiki/templates/concept-template.md",
+    "wiki/sources/01-learn-dnssec.md",
+    "raw/delv/Ubuntu Manpage       delv - DNS lookup and validation utility.md",
+    "Clippings",
+    "raw/delv",
+    "raw/assets/dnssec-key-state-machine.png",
+    "raw/delv",
+    "raw/dnssec0guide",
+    "raw/dns by cricket lu/DNS and BIND - Cricket Liu & Paul Albitz.azw3",
+    "raw/dns by cricket lu",
+    "raw/untitled folder",
+    "raw/dns-sec-rfc",
+    "raw/dns-sec-cloudflare&text"
+  ]
+}
