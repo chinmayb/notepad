@@ -3,7 +3,7 @@ title: "DNSSEC Internals"
 type: concept
 tags: ["dnssec", "cryptography", "dns", "record-types", "rrset", "ksk", "zsk", "csk", "edns0", "key-lifecycle", "nsec3", "kasp-states", "signature-timing", "dnskey-flags", "opt-record", "offline-signing"]
 created: 2026-04-13
-updated: 2026-04-14
+updated: 2026-05-03
 source_count: 6
 confidence: high
 status: active
@@ -58,25 +58,84 @@ Source: [[how-does-dnssec-work-cloudflare]]
 
 ## Key Types: KSK, ZSK, and CSK
 
-Every DNSSEC zone has at minimum two key pairs; a simplified single-key variant also exists:
+### The Validator Doesn't Care — The Operator Does
+
+A foundational point that the spec makes explicit but is often missed: **the DNSSEC validation protocol does not distinguish between key types**. From [[rfc-6781]] §3.1:
+
+> "The DNSSEC validation protocol does not distinguish between different types of DNSKEYs. The motivations to differentiate between keys are purely operational; validators will not make a distinction."
+
+A resolver presented with the DNSKEY RRset sees a bag of public keys. It will try each one against an RRSIG until verification succeeds or fails. The KSK/ZSK distinction is a deployment convention layered *on top of* a uniform protocol — not a protocol feature. Once the DNSKEY RRset is signed by the KSK, **any key in that RRset can be used as a ZSK** as far as the protocol is concerned (RFC 6781 §3.1).
+
+What separates them in practice is a single bit in the DNSKEY flags field — the **SEP (Secure Entry Point) bit** (see DNSKEY Flag Values section below) — and an operational policy about *which* key signs *what*.
+
+### What Each Key Actually Signs
 
 | Key type | Signs | Rotation frequency | Rollover cost | When to use |
 |----------|-------|--------------------|---------------|-------------|
-| **ZSK** (Zone Signing Key) | All RRsets in the zone | Frequently (months) | Low — no parent coordination | High-traffic zones needing frequent rotation |
-| **KSK** (Key Signing Key) | Only the DNSKEY RRset | Infrequently (yearly+) | **High** — requires parent DS update | Standard two-key deployments |
+| **ZSK** (Zone Signing Key) | Every non-DNSKEY RRset in the zone (A, AAAA, MX, NSEC/NSEC3, etc.) | Frequently (months) | Low — no parent coordination | High-traffic zones needing frequent rotation |
+| **KSK** (Key Signing Key) | **Only the apex DNSKEY RRset** | Infrequently (yearly+) | **High** — requires parent DS update | Standard two-key deployments |
 | **CSK** (Combined Signing Key) | Everything (serves both roles) | Infrequently | **High** — always requires parent DS update | Simple/internal zones; BIND `dnssec-policy default` |
 
-**Why two keys?**
-The KSK's hash is the DS record stored in the **parent zone**. Updating the DS record requires coordinating with the parent (registrar, TLD operator) — a slow, error-prone process. By separating the KSK from the ZSK:
-- ZSK can be rotated frequently for security without touching the parent
-- KSK remains stable, minimizing expensive parent coordination
-- A compromised ZSK can be replaced immediately without a parent DS change
+The DNSKEY RRset contains *both* the KSK public key and the ZSK public key. The KSK signs that RRset, vouching for the ZSK. The ZSK then signs everything else. This creates the internal chain:
 
-The KSK signs the DNSKEY RRset (which contains both the KSK public key and the ZSK public key). This creates an internal chain: KSK → endorses → ZSK → signs → all other records.
+```
+parent DS → (validates) KSK → (signs DNSKEY RRset containing) ZSK → (signs) all other RRsets
+```
 
-**BIND `dnssec-policy default`** uses a **CSK** with algorithm ECDSAP256SHA256. There is no separate ZSK — the single key handles everything. This is simpler but every key rollover requires parent DS interaction.
+Source: [[how-does-dnssec-work-cloudflare]], [[rfc-6781]]
 
-Sources: [[how-does-dnssec-work-cloudflare]], [[dnssec-guide-bind9]]
+### Why Two Keys? — The Operational Argument
+
+The KSK's hash is published as the **DS record in the parent zone**. Any KSK change must be reflected in the parent's DS RRset. That is the expensive operation. The cost comes from three things:
+
+1. **Cross-organizational coordination.** The parent zone is operated by a different entity (a TLD registry, a registrar, an enterprise IT group) and updates flow through their interface — often a web console, sometimes a ticketing system.
+2. **TTL-bounded waiting.** The parent must publish the new DS, then **wait for the original DS's TTL to expire** in caches before removing it. Per [[how-does-dnssec-work-cloudflare]]: "First, the parent needs to add the new DS record, then they need to wait until the TTL for the original DS record to expire before removing it."
+3. **High blast radius on error.** A bungled DS update breaks the chain of trust → the entire zone goes Bogus → resolvers SERVFAIL.
+
+Splitting the keys lets you decouple two different change cadences:
+
+- **ZSK rotates frequently, locally, with zero parent involvement.** A compromised ZSK can be replaced *immediately* — the operator generates a new ZSK, signs it into the DNSKEY RRset with the existing KSK, and re-signs the zone. No external coordination.
+- **KSK remains stable, infrequently rotated.** This minimizes how often you have to dance with the parent.
+
+Per [[rfc-6781]] §3.1: *"If there has been an event that increases the risk that a ZSK is compromised, it can be simply replaced with a ZSK rollover. The new RRset is then re-signed with the KSK."*
+
+### Why Two Keys? — The Storage / Risk-Tier Argument
+
+The split also lets the two keys live in different security tiers. From [[rfc-6781]] §3.1:
+
+> "A KSK can be stored off-line or with more limitations on access control than ZSKs, which need to be readily available for operational purposes such as the addition or deletion of zone data. A KSK stored on a smartcard that is kept in a safe, combined with a ZSK stored on a file-system accessible by operators for daily routine use, may provide better protection against key compromise without losing much operational flexibility."
+
+In other words:
+- **ZSK** — must be online to sign zone updates as records change (dynamic updates, daily edits). Lives on the signing host's filesystem or HSM. Higher exposure surface.
+- **KSK** — only needs to come out of the safe when the *DNSKEY RRset itself* changes (i.e., during a ZSK rollover or KSK rollover). Can live in cold storage / offline HSM / smartcard.
+
+This is the **Offline KSK** pattern (see Offline Signing section). It is not free: it adds an out-of-band ceremony every time a ZSK is rolled. But it removes the KSK's private material from any internet-connected machine.
+
+Per the BIND guide ([[dnssec-guide-bind9]]): *"For operational reasons, it is possible to keep the KSK offline. Doing so minimizes the risk of the key being compromised through theft or loss."*
+
+### Why NOT Two Keys? — When the Single-Type Scheme Wins
+
+[[rfc-6781]] is candid that the KSK/ZSK split is not always justified. The cryptanalysis argument *alone* does not motivate the split:
+
+> "Suppose one differentiates between a KSK and a ZSK, whereby the KSK effectivity period is X times the ZSK effectivity period. Then, in order for the resistance to cryptanalysis to be the same for the KSK and the ZSK, the KSK needs to be X times stronger than the ZSK. […] When translated to asymmetric keys, the size difference is still too insignificant to warrant a key-split; it only marginally affects the packet size and signing speed." (RFC 6781 §3.1)
+
+The split's value is **operational**, not cryptographic. RFC 6781 explicitly names cases where the split is weakly justified:
+- Keys are stored on an HSM (storage exposure is already low)
+- The KSK is known not to be used as a trust anchor anywhere
+- The cost of operational complexity outweighs the flexibility benefit
+
+In those cases the **Single-Type Signing Scheme** (RFC 6781 terminology) — which BIND calls a **CSK** — is reasonable. One key signs everything; every rollover involves the parent. Simpler operationally, fewer moving parts, but every rotation is "expensive."
+
+**BIND `dnssec-policy default`** uses a CSK with ECDSAP256SHA256 and *never rotates it*. The conventional KSK/ZSK split must be enabled by writing a custom policy ([[dnssec-guide-bind9]] shows the typical "KSK yearly, ZSK every two months" pattern).
+
+### Detection: Which Key Is Which?
+
+Two practical recipes for identifying KSK vs. ZSK in a DNSKEY RRset:
+
+1. **Flag value** — KSK is `257`, ZSK is `256`. The difference is the SEP bit (bit 15). See the DNSKEY Flag Values section below.
+2. **Parity test** ([[rfc-6781]] §3.1): *"If the flag field is an odd number, it is a KSK; otherwise, it is a ZSK."* (Because the SEP bit is bit 0 in the flags field's low byte after byte-swap, setting it makes the integer odd.)
+
+Sources: [[how-does-dnssec-work-cloudflare]], [[dnssec-guide-bind9]], [[rfc-6781]], [[cs161-dnssec]]
 
 ---
 
@@ -269,5 +328,5 @@ The gap between Refresh Period and Validity Period = operator's response window 
 - [[dnssec-and-bind9-isc]] — EDNS0 as hard prerequisite; DO bit behavior
 - [[dnssec-guide-bind9]] — CSK type, key lifecycle metadata (Created/Publish/Activate/Inactive/Delete), NSEC3 parameter guidance (RFC 9276: 0 iterations, empty salt)
 - [[dnssec-kasp-policy]] — KASP key states (hidden/rumoured/omnipresent/unretentive), `.state` file format, CSK rollover strategy
-- [[rfc-6781]] — formal signature timing terminology (validity period, Re-Sign Period, Refresh Period, key effectivity period); NSEC3 2012 guidance (superseded by RFC 9276)
+- [[rfc-6781]] — formal signature timing terminology (validity period, Re-Sign Period, Refresh Period, key effectivity period); NSEC3 2012 guidance (superseded by RFC 9276); §3.1 "validators don't distinguish key types" — KSK/ZSK split is purely operational; storage-tier and parent-coordination motivations for the split; cryptanalysis does NOT motivate the split; "odd flag = KSK" parity rule; Single-Type Signing Scheme = CSK
 - [[cs161-dnssec]] — DNSKEY flag values (256=ZSK, 257=KSK, SEP bit); OPT pseudo-record / ADDITIONAL count +1; offline signing DoS motivation

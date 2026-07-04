@@ -6,6 +6,19 @@
 
 ---
 
+## [2026-05-03] update | DNSSEC Internals — Expand KSK/ZSK Section
+
+- **Operation**: update
+- **Trigger**: User flagged that `dnssec-internals` was "not extensive yet" on KSK/ZSK and asked for what each is and why both are needed.
+- **Pages updated**:
+  - `wiki/concepts/dnssec-internals.md` — KSK/ZSK section significantly expanded. Added: (1) "The Validator Doesn't Care" subsection citing RFC 6781 §3.1 — protocol does not distinguish key types, distinction is purely operational; (2) clarified KSK signs **only the apex DNSKEY RRset**; (3) "Why Two Keys? — Operational Argument" subsection naming the three concrete costs of a KSK rollover (cross-org coordination, TTL-bounded waiting, high blast radius); (4) "Why Two Keys? — Storage / Risk-Tier Argument" subsection on offline-KSK / HSM patterns with RFC 6781 quote on smartcard-in-safe + filesystem-ZSK pairing; (5) "Why NOT Two Keys?" subsection — RFC 6781's own admission that cryptanalysis doesn't justify the split; conditions where Single-Type Signing Scheme (CSK) wins; (6) Detection subsection with the "odd flag value = KSK" parity rule from RFC 6781 §3.1. Updated frontmatter date 2026-04-14→2026-05-03. Updated [[rfc-6781]] entry in Mentioned In to reflect the new §3.1 material now cited.
+- **Entities touched**: none
+- **Concepts touched**: dnssec-internals (KSK/ZSK section: ~25 lines → ~80 lines)
+- **Contradictions found**: none — RFC 6781's "purely operational" framing is consistent with Cloudflare and BIND material; both already aligned on KSK/ZSK rationale.
+- **Notes**: No new sources ingested; this was a depth pass on existing material. Key new framing in the wiki: the KSK/ZSK split is a *deployment convention* on top of a uniform validation protocol, not a protocol feature. The "why two keys" rationale is now broken into three explicit sub-arguments (operational, storage-tier, when-not-to) rather than a single bullet list, mirroring RFC 6781's own structure.
+
+---
+
 ## [2026-04-20] lint | Wiki Review — Metadata & Consistency Fixes
 
 - **Operation**: lint + fix

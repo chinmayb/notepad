@@ -8,6 +8,8 @@
 
 ## How to Use This Index
 
+**New to DNSSEC? Start with [[dnssec-learning-roadmap]]**, not here — it gives the first-principles reading order through the concept pages below. This index is a reference catalog for looking something up once you already know what you're after.
+
 - Start here every session to orient to what exists
 - Entries follow the format: `[[PageTitle]] — one-line description (sources: N)`
 - Sections mirror the wiki folder structure
@@ -56,7 +58,7 @@
 | Page | Description | Status |
 |------|-------------|--------|
 | [[chain-of-trust]] | Cryptographic hierarchy root→answer; DS mechanics; KSK rollover; first-principles motivation | Active |
-| [[dnssec-internals]] | RRsets, record types (DNSKEY/RRSIG/DS/NSEC/NSEC3), KSK/ZSK split, EDNS0/DO bit | Active |
+| [[dnssec-internals]] | RRsets, record types (DNSKEY/RRSIG/DS/NSEC/NSEC3), KSK/ZSK rationale (operational + storage-tier + when-not-to), EDNS0/DO bit | Active |
 | [[dns-cache-poisoning]] | The attack DNSSEC prevents; Kaminsky mechanics; port randomization vs cryptographic fix | Active |
 | [[dnssec-debugging]] | Tools (dig, delv, DNSViz), failure modes incl. clock skew + EDNS0 stripping | Active |
 | [[dnssec-in-bind]] | BIND 9 config, `dnssec-policy` vs `auto-dnssec`, operational prerequisites | Active |

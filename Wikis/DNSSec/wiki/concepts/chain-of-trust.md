@@ -25,7 +25,7 @@ contradictions: []
 
 The DNSSEC chain of trust is the cryptographic hierarchy that lets a validating resolver verify that a DNS response is authentic, by building a verified path from the **root zone's trust anchor** (hardcoded in the resolver) all the way down to the final answer.
 
-It is the central organizing principle of DNSSEC. Every other DNSSEC mechanism — KSK/ZSK split, DS records, RRSIGs, NSEC — exists to establish, maintain, or verify this chain.
+It is the central organising principle of DNSSEC. Every other DNSSEC mechanism — KSK/ZSK split, DS records, RRSIGs, NSEC — exists to establish, maintain, or verify this chain.
 
 ---
 

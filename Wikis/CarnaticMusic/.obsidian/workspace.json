@@ -1,24 +1,20 @@
 {
   "main": {
-    "id": "ad2b20d52784eabc",
+    "id": "a20b910b4a969fee",
     "type": "split",
     "children": [
       {
-        "id": "e9322793e801fb61",
+        "id": "6be0dd1d307d9fb6",
         "type": "tabs",
         "children": [
           {
-            "id": "d4a1874098618448",
+            "id": "6a17031a17e683a2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CarnaticMusic/wiki/overview.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "overview"
+              "title": "New tab"
             }
           }
         ]
@@ -27,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "4ec09edda9baafa8",
+    "id": "edc9665782bf9c3d",
     "type": "split",
     "children": [
       {
-        "id": "ffb6e7eb6cdacdde",
+        "id": "649e5fd3c48983fc",
         "type": "tabs",
         "children": [
           {
-            "id": "e6fe2ff35a829393",
+            "id": "21f56921ce6ebfb4",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +44,7 @@
             }
           },
           {
-            "id": "09c0c5968fc10fd9",
+            "id": "f4279d24101481c6",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +61,7 @@
             }
           },
           {
-            "id": "81c72a8f575ddd58",
+            "id": "4776aad8db2c0ca1",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -78,23 +74,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 361.5
+    "width": 300
   },
   "right": {
-    "id": "893c38f8736b5134",
+    "id": "63c04f8ae1a20ab3",
     "type": "split",
     "children": [
       {
-        "id": "da0a047ffd3573e5",
+        "id": "e600ab371bf6853d",
         "type": "tabs",
         "children": [
           {
-            "id": "25588a9822ee0bbc",
+            "id": "168c7c80c7cd2457",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DNSSec/wiki/sources/how-does-dnssec-work-cloudflare.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for how-does-dnssec-work-cloudflare"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "c2a81cce813226ed",
+            "id": "13c73dbaa99d32fb",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "DNSSec-wiki/wiki/concepts/chain-of-trust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from chain-of-trust"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "c786fb558a0119e9",
+            "id": "475d7d4468d89af1",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +131,7 @@
             }
           },
           {
-            "id": "a59c0aecd7835c8d",
+            "id": "17e9e0f23471b465",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,18 +145,17 @@
             }
           },
           {
-            "id": "cd3b1e1c038f296f",
+            "id": "cc411da0a520dcde",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "DNSSec-wiki/wiki/concepts/chain-of-trust.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of chain-of-trust"
+              "title": "Outline"
             }
           }
         ]
@@ -183,43 +176,33 @@
       "bases:Create new base": false
     }
   },
-  "active": "d4a1874098618448",
+  "active": "21f56921ce6ebfb4",
   "lastOpenFiles": [
-    "index.md",
-    "DNSSec/wiki/synthesis/dnssec-learning-roadmap.md",
-    "DNSSec/wiki/concepts/chain-of-trust.md",
-    "DNSSec/wiki/index.md",
+    "raw/assets/Mastering Taal and Laya Essential for Indian Classical Music.md",
+    "raw/assets/CMOverview.pdf",
+    "raw/assets/Untitled.md",
+    "wiki/concepts/llm-wiki-pattern.md",
+    "raw/assets/Carnatic_Music.pdf",
+    "raw/assets/Unconfirmed 537761.crdownload",
+    "wiki/entities/Andrej-Karpathy.md",
+    "wiki/sources/karpathy-llm-wiki-gist.md",
+    "wiki/log.md",
+    "wiki/index.md",
+    "wiki/overview.md",
+    "wiki/templates/query-template.md",
+    "wiki/templates/synthesis-template.md",
+    "wiki/templates/concept-template.md",
+    "wiki/templates/entity-template.md",
+    "wiki/templates/source-template.md",
+    "raw/karpathy-llm-wiki-gist.md",
+    "raw/README.md",
     "CLAUDE.md",
-    "CarnaticMusic/wiki/concepts/llm-wiki-pattern.md",
-    "Piano Essentials",
-    "CarnaticMusic/wiki/templates/learning-roadmap-template.md",
-    "DNSSec/wiki/templates/learning-roadmap-template.md",
-    "DNSSec/wiki/overview.md",
-    "CarnaticMusic/wiki/log.md",
-    "CarnaticMusic/wiki/index.md",
-    "CarnaticMusic/wiki/overview.md",
-    "Protoactor/Readme.md",
-    "DNSSec/wiki/queries/lint-2026-04-10.md",
-    "DNSSec/Welcome.md",
-    "CarnaticMusic/CLAUDE.md",
-    "LLMS/Beginers journey to llms.md",
-    "DNSSec/CLAUDE.md",
-    "LLMS",
-    "DNSSec/wiki/concepts/dnssec-debugging.md",
-    "DNSSec/wiki/concepts/dns-cache-poisoning.md",
-    "CarnaticMusic/wiki/templates/concept-template.md",
-    "CarnaticMusic/raw/assets/CMOverview.pdf",
-    "CarnaticMusic/raw/assets/Carnatic_Music.pdf",
-    "DNSSec/wiki/templates/concept-template.md",
-    "DNSSec/wiki/entities/Internet-Systems-Consortium.md",
-    "DNSSec/wiki/entities/DNSViz.md",
-    "DNSSec/wiki/entities/Dan-Kaminsky.md",
-    "DNSSec/wiki/entities/Cloudflare.md",
-    "Clippings",
-    "CarnaticMusic/raw/assets/Unconfirmed 537761.crdownload",
-    "CarnaticMusic/wiki/templates",
-    "CarnaticMusic/wiki/synthesis",
-    "CarnaticMusic/wiki/sources",
-    "CarnaticMusic/wiki/queries"
+    "wiki/templates",
+    "wiki/synthesis",
+    "wiki/sources",
+    "wiki/queries",
+    "wiki/entities",
+    "wiki/concepts",
+    "wiki"
   ]
 }

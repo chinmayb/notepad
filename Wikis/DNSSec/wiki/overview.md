@@ -19,11 +19,13 @@ contradictions: []
 > **Domain**: DNSSEC — DNS Security Extensions
 > **Goal**: Operational mastery of DNSSEC from first principles through BIND configuration and production debugging
 
+**Start here: [[dnssec-learning-roadmap]]** — the first-principles reading order through this topic's concept pages.
+
 ---
 
 ## Current Focus
 
-This knowledge base is being built to achieve deep, practical understanding of DNSSEC — the cryptographic security layer for DNS. The owner's six learning axes are captured in [[01-learn-dnssec]] and the reading plan is in [[dnssec-learning-roadmap]].
+This knowledge base is being built to achieve deep, practical understanding of DNSSEC — the cryptographic security layer for DNS. The owner's six learning axes are captured in [[01-learn-dnssec]].
 
 **11 raw sources** are staged in `raw/` covering theory, RFC specifications, BIND operations, and debugging tools. Ingestion is in progress (8 of 11 ingested). The BIND operational layer is now fully documented (3 BIND sources + RFC 6781). The conceptual/pedagogical layer is complete (CS161 ingested; all concept pages are now active). Remaining: RFC 9364 reference, and 2 debugging tool sources.
 

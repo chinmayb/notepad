@@ -27,7 +27,7 @@ contradictions: []
 
 The current source collection covers **DNSSEC theory and BIND operations well** (8 of 11 sources ingested). The conceptual foundation (chain of trust, record types, signing mechanics) and the full BIND operational stack (`dnssec-policy`, key lifecycle, rollover, validation) are now documented. Debugging remains the weakest axis — the `dig`/`delv` tool sources and DNSViz documentation have not yet been ingested (Phase 3 remaining).
 
-**Suggested reading/ingestion order below** — optimized for building understanding layer by layer, not source-by-source.
+**New to this topic?** Jump straight to [Concept Reading Order](#concept-reading-order) below — it lists the 6 concept pages that already exist, in first-principles order. The Phase sections immediately below are a *different* list: they track raw-source **ingestion** order (what to feed the agent next), not what to read.
 
 ---
 
@@ -127,18 +127,18 @@ The current source collection covers **DNSSEC theory and BIND operations well** 
 
 ---
 
-## Concept Pages to Build (in order)
+## Concept Reading Order
 
-As sources are ingested, these concept pages should be created and progressively filled:
+**This is the entry point for this topic.** The 6 concept pages that exist today, in the order they build on each other — start from the top, from first principles:
 
-1. [[chain-of-trust]] — root of all DNSSEC understanding
-2. [[dnssec-internals]] — record types, signing mechanics
-3. [[dnssec-vs-dns-resolution]] — the workflow delta
-4. [[dnssec-in-bind]] — BIND-specific config and operation
-5. [[dnssec-debugging]] — tools, failure modes, triage methodology
-6. [[key-rollover]] — complex enough to deserve its own page
-7. [[nsec-and-nsec3]] — denial of existence — nuanced enough to stand alone
-8. [[kaminsky-attack]] — the historical motivation, entity page for the attack
+1. [[dns-cache-poisoning]] — **start here.** The motivating problem: why DNS needed securing at all (the Kaminsky attack).
+2. [[chain-of-trust]] — the structural fix. The organizing principle every other DNSSEC mechanism exists to serve.
+3. [[dnssec-internals]] — the mechanics: record types, KSK/ZSK/CSK, signing, NSEC/NSEC3, key lifecycle.
+4. [[dnssec-vs-dns-resolution]] — how an actual DNS resolution changes step by step once DNSSEC is in play.
+5. [[dnssec-in-bind]] — BIND-specific deployment: `dnssec-policy`, KASP, `rndc` commands.
+6. [[dnssec-debugging]] — triage and failure modes; read this once you're operating a real zone.
+
+> **Note**: earlier drafts of this roadmap planned `[[key-rollover]]`, `[[nsec-and-nsec3]]`, and `[[kaminsky-attack]]` as separate pages. That content was absorbed into `[[dnssec-in-bind]]`/`[[chain-of-trust]]`, `[[dnssec-internals]]`, and `[[dns-cache-poisoning]]` respectively instead of being built standalone — don't recreate them as separate pages.
 
 ---
 
